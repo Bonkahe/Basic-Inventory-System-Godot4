@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://dit5fjgxvvysf"]
+
+[ext_resource type="PackedScene" uid="uid://cr16qvxkng034" path="res://Player/PlayerPrefab.tscn" id="1_yqaf2"]
+[ext_resource type="PackedScene" uid="uid://cuiklvlmyu8n6" path="res://Inventory/TestCube.tscn" id="2_6xe7p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pukp7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ie51c"]
+sky_material = SubResource("ProceduralSkyMaterial_pukp7")
+
+[sub_resource type="Environment" id="Environment_0l0y6"]
+background_mode = 2
+sky = SubResource("Sky_ie51c")
+tonemap_mode = 3
+ssao_enabled = true
+ssil_enabled = true
+ssil_sharpness = 0.7
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_57s1m"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ktdl"]
+albedo_color = Color(0.614018, 0.597279, 0.593255, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_837is"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rt1in"]
+size = Vector3(10.1387, 2.23071, 1.61328)
+
+[node name="TestScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0l0y6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 3.29424, 0)
+shadow_enabled = true
+shadow_bias = 0.05
+directional_shadow_split_1 = 0.05
+directional_shadow_blend_splits = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_57s1m")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ktdl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_837is")
+
+[node name="Table" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08934, -0.329736, -5.45484)
+size = Vector3(10.0997, 2.17786, 1.62549)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
+shape = SubResource("BoxShape3D_rt1in")
+
+[node name="PlayerBody" parent="." instance=ExtResource("1_yqaf2")]
+
+[node name="ItemTestCube" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.782544, 1.88402, -5.37182)
+
+[node name="ItemTestCube2" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523464, 2.70257, -5.37182)
+
+[node name="ItemTestCube3" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195578, 1.95648, -5.37182)
+
+[node name="ItemTestCube4" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21982, 1.88402, -5.98195)
+
+[node name="ItemTestCube5" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.960735, 2.70257, -5.98195)
+
+[node name="ItemTestCube6" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241693, 1.95648, -5.98195)
+
+[node name="ItemTestCube7" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.214633, 0, 0.976695, 0, 1, 0, -0.976695, 0, 0.214633, 0.780119, 3.43873, -6.03301)
+
+[node name="ItemTestCube8" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.214633, 0, 0.976695, 0, 1, 0, -0.976695, 0, 0.214633, 0.724512, 4.25728, -5.77997)
+
+[node name="ItemTestCube9" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.214633, 0, 0.976695, 0, 1, 0, -0.976695, 0, 0.214633, 0.570182, 3.51119, -5.07769)
+
+[node name="ItemTestCube10" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.601843, 0, 0.798615, 0, 1, 0, -0.798615, 0, 0.601843, 0.124461, 3.43873, -5.72738)
+
+[node name="ItemTestCube11" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.601843, 0, 0.798615, 0, 1, 0, -0.798615, 0, 0.601843, -0.0314645, 4.25728, -5.52047)
+
+[node name="ItemTestCube12" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.601843, 0, 0.798615, 0, 1, 0, -0.798615, 0, 0.601843, -0.464215, 3.51119, -4.94623)
+
+[node name="ItemTestCube13" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.75503, 0, -0.65569, 0, 1, 0, 0.65569, 0, 0.75503, 0.676832, 4.99198, -5.12762)
+
+[node name="ItemTestCube14" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.75503, 0, -0.65569, 0, 1, 0, 0.65569, 0, 0.75503, 0.481219, 5.81053, -5.2975)
+
+[node name="ItemTestCube15" parent="." instance=ExtResource("2_6xe7p")]
+transform = Transform3D(0.75503, 0, -0.65569, 0, 1, 0, 0.65569, 0, 0.75503, -0.0616795, 5.06444, -5.76897)

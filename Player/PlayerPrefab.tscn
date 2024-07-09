@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://cr16qvxkng034"]
+
+[ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_lqs8g"]
+[ext_resource type="Script" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_etr4n"]
+[ext_resource type="Script" path="res://Inventory/ItemData.gd" id="3_02blw"]
+[ext_resource type="PackedScene" uid="uid://cuiklvlmyu8n6" path="res://Inventory/TestCube.tscn" id="4_g74hu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jqxt5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i50ut"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_656tx"]
+
+[sub_resource type="Resource" id="Resource_sd2v3"]
+script = ExtResource("3_02blw")
+ItemName = "Test Cube"
+ItemModelPrefab = ExtResource("4_g74hu")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kv1ul"]
+radius = 2.25705
+
+[node name="PlayerBody" type="CharacterBody3D" node_paths=PackedStringArray("CameraContainerNode")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_lqs8g")
+CameraContainerNode = NodePath("CameraContainer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+gi_mode = 2
+mesh = SubResource("CapsuleMesh_jqxt5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.619868, 0, 0, 0, 0.678462, 0, 0, 0, 1, 0, 0.658649, -0.379571)
+gi_mode = 2
+mesh = SubResource("BoxMesh_i50ut")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_656tx")
+
+[node name="CameraContainer" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer"]
+transform = Transform3D(1, 0, 0, 0, 0.997021, 0.0771367, 0, -0.0771367, 0.997021, 0, 1.29109, 4.69295)
+cull_mask = 786431
+
+[node name="InteractionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_etr4n")
+ItemTypes = Array[ExtResource("3_02blw")]([SubResource("Resource_sd2v3")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_kv1ul")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnObjectEnteredArea"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnObjectExitedArea"]
