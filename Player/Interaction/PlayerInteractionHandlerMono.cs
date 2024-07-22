@@ -7,6 +7,7 @@ using System.Linq;
 [GlobalClass]
 public partial class PlayerInteractionHandlerMono : Area3D
 {
+    [Signal] public delegate void OnItemPickedUpEventHandler(ItemDataMono item);
     [Export] public Array<ItemDataMono> ItemTypes { get; set; } = new Array<ItemDataMono>();
 
     private List<InteractableItemMono> NearbyBodies = new List<InteractableItemMono>();
@@ -32,6 +33,7 @@ public partial class PlayerInteractionHandlerMono : Area3D
             if (template != null)
             {
                 GD.Print("Item id:" + ItemTypes.IndexOf(template) + " Item Name:" + template.ItemName);
+                EmitSignal(SignalName.OnItemPickedUp, template);
             }
             else
             {

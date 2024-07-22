@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Inventory/InteractableItem.gd" id="1_kqe7b"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4vr5q"]
+[sub_resource type="BoxMesh" id="BoxMesh_28i5m"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ow2tr"]
 _surfaces = [{
@@ -32,7 +32,7 @@ ItemHighlightMesh = NodePath("MeshInstance3D/Outline")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.471379, 0, 0, 0, 0.471379, 0, 0, 0, 0.471379, 0, 0, 0)
-mesh = SubResource("BoxMesh_4vr5q")
+mesh = SubResource("BoxMesh_28i5m")
 
 [node name="Outline" type="MeshInstance3D" parent="MeshInstance3D"]
 visible = false

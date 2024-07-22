@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr16qvxkng034"]
+[gd_scene load_steps=13 format=3 uid="uid://cr16qvxkng034"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_lqs8g"]
 [ext_resource type="Script" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_etr4n"]
 [ext_resource type="Script" path="res://Inventory/ItemData.gd" id="3_02blw"]
 [ext_resource type="PackedScene" uid="uid://cuiklvlmyu8n6" path="res://Inventory/TestCube.tscn" id="4_g74hu"]
+[ext_resource type="Texture2D" uid="uid://djx5ov4jr3f3i" path="res://Textures/BoxIcon.png" id="4_s6nxe"]
+[ext_resource type="Script" path="res://Inventory/InventoryHandler.gd" id="6_ng4qd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jqxt5"]
 
@@ -11,13 +13,30 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_656tx"]
 
-[sub_resource type="Resource" id="Resource_sd2v3"]
+[sub_resource type="Resource" id="Resource_tkgdw"]
 script = ExtResource("3_02blw")
 ItemName = "Test Cube"
+Icon = ExtResource("4_s6nxe")
 ItemModelPrefab = ExtResource("4_g74hu")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv1ul"]
 radius = 2.25705
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q03lm"]
+bg_color = Color(0.223238, 0.24924, 0.26794, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.129412)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.168627)
+shadow_size = 3
+shadow_offset = Vector2(-1, 3)
 
 [node name="PlayerBody" type="CharacterBody3D" node_paths=PackedStringArray("CameraContainerNode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -46,10 +65,53 @@ cull_mask = 786431
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_etr4n")
-ItemTypes = Array[ExtResource("3_02blw")]([SubResource("Resource_sd2v3")])
+ItemTypes = Array[ExtResource("3_02blw")]([SubResource("Resource_tkgdw")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("SphereShape3D_kv1ul")
 
+[node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_ng4qd")
+InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
+
+[node name="Panel" type="Panel" parent="InventoryUI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -328.0
+offset_right = 414.0
+offset_bottom = -43.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q03lm")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="InventoryUI/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[connection signal="OnItemPickedUp" from="InteractionArea" to="InventoryUI" method="PickupItem"]
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="OnObjectEnteredArea"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="OnObjectExitedArea"]
