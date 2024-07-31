@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\inventory\\inventoryhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|solutionrelative:inventory\\inventoryhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\player\\interaction\\playerinteractionhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|solutionrelative:player\\interaction\\playerinteractionhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\inventory\\inventoryslotmono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|solutionrelative:inventory\\inventoryslotmono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\inventory\\interactableitemmono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|solutionrelative:inventory\\interactableitemmono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\inventory\\inventoryhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|solutionrelative:inventory\\inventoryhandlermono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2A55BA77-6A6C-4889-924A-6CB447C23D7C}|BasicInventorySystem.csproj|f:\\workspace-backedup\\godotprojects\\1-educational\\beginnertuts\\basicinventorysystem\\basicinventorysystem\\inventory\\itemdatamono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,27 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:2:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:6:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InteractableItemMono.cs",
+              "DocumentMoniker": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\InteractableItemMono.cs",
+              "RelativeDocumentMoniker": "Inventory\\InteractableItemMono.cs",
+              "ToolTip": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\InteractableItemMono.cs",
+              "RelativeToolTip": "Inventory\\InteractableItemMono.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAxwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T01:46:21.433Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "InventoryHandlerMono.cs",
               "DocumentMoniker": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\InventoryHandlerMono.cs",
               "RelativeDocumentMoniker": "Inventory\\InventoryHandlerMono.cs",
@@ -54,38 +55,37 @@
               "RelativeToolTip": "Inventory\\InventoryHandlerMono.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T18:35:45.943Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-22T18:35:45.943Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "InventorySlotMono.cs",
               "DocumentMoniker": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\InventorySlotMono.cs",
               "RelativeDocumentMoniker": "Inventory\\InventorySlotMono.cs",
               "ToolTip": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\InventorySlotMono.cs",
               "RelativeToolTip": "Inventory\\InventorySlotMono.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAYAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAIwDoAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T18:30:35.445Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PlayerInteractionHandlerMono.cs",
               "DocumentMoniker": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Player\\Interaction\\PlayerInteractionHandlerMono.cs",
               "RelativeDocumentMoniker": "Player\\Interaction\\PlayerInteractionHandlerMono.cs",
               "ToolTip": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Player\\Interaction\\PlayerInteractionHandlerMono.cs",
               "RelativeToolTip": "Player\\Interaction\\PlayerInteractionHandlerMono.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAACMAAABAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T18:09:32.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ItemDataMono.cs",
               "DocumentMoniker": "F:\\Workspace-Backedup\\GodotProjects\\1-Educational\\BeginnerTuts\\BasicInventorySystem\\basicinventorysystem\\Inventory\\ItemDataMono.cs",
               "RelativeDocumentMoniker": "Inventory\\ItemDataMono.cs",
@@ -93,8 +93,7 @@
               "RelativeToolTip": "Inventory\\ItemDataMono.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-05T22:45:06.015Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-05T22:45:06.015Z"
             }
           ]
         }

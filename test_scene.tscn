@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dit5fjgxvvysf"]
+[gd_scene load_steps=11 format=3 uid="uid://dit5fjgxvvysf"]
 
 [ext_resource type="PackedScene" uid="uid://cr16qvxkng034" path="res://Player/PlayerPrefab.tscn" id="1_yqaf2"]
 [ext_resource type="PackedScene" uid="uid://cuiklvlmyu8n6" path="res://Inventory/TestCube.tscn" id="2_6xe7p"]
+[ext_resource type="PackedScene" uid="uid://dcig5eot87p8w" path="res://Inventory/TestSphere.tscn" id="3_uojng"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pukp7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -108,3 +109,24 @@ transform = Transform3D(0.75503, 0, -0.65569, 0, 1, 0, 0.65569, 0, 0.75503, 0.48
 
 [node name="ItemTestCube15" parent="." instance=ExtResource("2_6xe7p")]
 transform = Transform3D(0.75503, 0, -0.65569, 0, 1, 0, 0.65569, 0, 0.75503, -0.0616795, 5.06444, -5.76897)
+
+[node name="ItemTestCube16" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2427, 2.99194, -4.95444)
+
+[node name="ItemTestCube17" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.959316, 3.96103, -4.95444)
+
+[node name="ItemTestCube18" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15596, 3.95576, -4.95444)
+
+[node name="ItemTestCube19" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.327567, 4.92939, -4.95444)
+
+[node name="ItemTestCube20" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48924, 4.48402, -4.95444)
+
+[node name="ItemTestCube21" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15806, 5.83727, -4.95444)
+
+[node name="ItemTestCube22" parent="." instance=ExtResource("3_uojng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.591774, 6.67075, -4.95444)

@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr16qvxkng034"]
+[gd_scene load_steps=16 format=3 uid="uid://cr16qvxkng034"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_lqs8g"]
-[ext_resource type="Script" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_etr4n"]
-[ext_resource type="Script" path="res://Inventory/ItemData.gd" id="3_02blw"]
+[ext_resource type="Script" path="res://Player/Interaction/PlayerInteractionHandler.gd" id="2_kykvu"]
+[ext_resource type="Script" path="res://Inventory/ItemData.gd" id="3_05jue"]
 [ext_resource type="PackedScene" uid="uid://cuiklvlmyu8n6" path="res://Inventory/TestCube.tscn" id="4_g74hu"]
 [ext_resource type="Texture2D" uid="uid://djx5ov4jr3f3i" path="res://Textures/BoxIcon.png" id="4_s6nxe"]
-[ext_resource type="Script" path="res://Inventory/InventoryHandler.gd" id="6_ng4qd"]
+[ext_resource type="Texture2D" uid="uid://dmm2hx7m8xjq5" path="res://Textures/SphereIcon.png" id="6_mu7kc"]
+[ext_resource type="PackedScene" uid="uid://dcig5eot87p8w" path="res://Inventory/TestSphere.tscn" id="7_xsqkg"]
+[ext_resource type="Script" path="res://Inventory/InventoryHandler.gd" id="8_81rhn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jqxt5"]
 
@@ -13,11 +15,17 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_656tx"]
 
-[sub_resource type="Resource" id="Resource_tkgdw"]
-script = ExtResource("3_02blw")
+[sub_resource type="Resource" id="Resource_qmlov"]
+script = ExtResource("3_05jue")
 ItemName = "Test Cube"
 Icon = ExtResource("4_s6nxe")
 ItemModelPrefab = ExtResource("4_g74hu")
+
+[sub_resource type="Resource" id="Resource_eff87"]
+script = ExtResource("3_05jue")
+ItemName = "Test Sphere"
+Icon = ExtResource("6_mu7kc")
+ItemModelPrefab = ExtResource("7_xsqkg")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kv1ul"]
 radius = 2.25705
@@ -64,20 +72,22 @@ cull_mask = 786431
 [node name="InteractionArea" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("2_etr4n")
-ItemTypes = Array[ExtResource("3_02blw")]([SubResource("Resource_tkgdw")])
+script = ExtResource("2_kykvu")
+ItemTypes = Array[ExtResource("3_05jue")]([SubResource("Resource_qmlov"), SubResource("Resource_eff87")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("SphereShape3D_kv1ul")
 
-[node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("InventoryGrid")]
+[node name="InventoryUI" type="Control" parent="." node_paths=PackedStringArray("PlayerBody", "InventoryGrid")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_ng4qd")
+script = ExtResource("8_81rhn")
+PlayerBody = NodePath("..")
+CollisionMask = 1
 InventoryGrid = NodePath("Panel/MarginContainer/GridContainer")
 
 [node name="Panel" type="Panel" parent="InventoryUI"]

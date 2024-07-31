@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://cuiklvlmyu8n6"]
 
-[ext_resource type="Script" path="res://Inventory/InteractableItem.gd" id="1_kqe7b"]
+[ext_resource type="Script" path="res://Inventory/InteractableItem.gd" id="1_q7687"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_28i5m"]
 
@@ -27,7 +27,7 @@ emission_energy_multiplier = 3.0
 [node name="ItemTestCube" type="RigidBody3D" node_paths=PackedStringArray("ItemHighlightMesh")]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_kqe7b")
+script = ExtResource("1_q7687")
 ItemHighlightMesh = NodePath("MeshInstance3D/Outline")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

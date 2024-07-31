@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c152xf4ysp1y"]
 
-[ext_resource type="Script" path="res://Inventory/InventorySlot.gd" id="1_xcloj"]
+[ext_resource type="Script" path="res://Inventory/InventorySlot.gd" id="1_3b2p6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hosvb"]
 bg_color = Color(0.180392, 0.2, 0.211765, 1)
@@ -58,7 +58,7 @@ focus_mode = 0
 theme_override_styles/hover = SubResource("StyleBoxFlat_hosvb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_faiu1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1h2uy")
-script = ExtResource("1_xcloj")
+script = ExtResource("1_3b2p6")
 IconSlot = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
