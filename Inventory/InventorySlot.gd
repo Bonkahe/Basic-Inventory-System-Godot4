@@ -1,8 +1,10 @@
 extends Control
 class_name InventorySlot
 
+signal OnItemEquiped(SlotID)
 signal OnItemDropped(fromSlotID, toSlotID)
 
+@export var EquippedHighlight : Panel
 @export var IconSlot : TextureRect
 
 var InventorySlotID : int = -1
@@ -10,8 +12,14 @@ var SlotFilled : bool = false
 
 var SlotData : ItemData
 
-func FillSlot(data : ItemData):
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if (event.button_index == MOUSE_BUTTON_LEFT and event.double_click):
+			OnItemEquiped.emit(InventorySlotID)
+
+func FillSlot(data : ItemData, equipped : bool):
 	SlotData = data
+	EquippedHighlight.visible = equipped
 	if (SlotData != null):
 		SlotFilled = true
 		IconSlot.texture = data.Icon

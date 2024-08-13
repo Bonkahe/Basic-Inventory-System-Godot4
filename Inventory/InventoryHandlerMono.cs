@@ -15,6 +15,8 @@ public partial class InventoryHandlerMono : Control
 
 	List<InventorySlotMono> InventorySlots = new List<InventorySlotMono>();
 
+    int EquippedSlot = -1;
+
     public override void _Ready()
 	{
 		for (int i = 0; i < ItemSlotsCount; i++)
@@ -23,29 +25,73 @@ public partial class InventoryHandlerMono : Control
 			InventoryGrid.AddChild(slot);
 			slot.InventorySlotID = i;
             slot.OnItemDropped += ItemDroppedOnSlot;
-			InventorySlots.Add(slot);
+            slot.OnItemEquiped += ItemEquipped;
+            InventorySlots.Add(slot);
         }
 	}
 
     public void PickupItem(ItemDataMono item)
 	{
-		foreach (InventorySlotMono slot in InventorySlots)
+        bool foundSlot = false;
+        foreach (InventorySlotMono slot in InventorySlots)
 		{
 			if (!slot.SlotFilled)
 			{
-				slot.FillSlot(item);
-				break;
+				slot.FillSlot(item, false);
+                foundSlot = true;
+                break;
             }
 		}
-	}
 
-	public void ItemDroppedOnSlot(int fromSlotID, int toSlotID)
+        if (!foundSlot)
+        {
+            var newItem = item.ItemModelPrefab.Instantiate() as Node3D;
+
+            PlayerBody.GetParent().AddChild(newItem);
+
+            newItem.GlobalPosition = PlayerBody.GlobalPosition + PlayerBody.GlobalTransform.Basis.X * 2.0f;
+        }
+
+    }
+
+    public void ItemEquipped(int slotID)
 	{
-		var toSlotItem = InventorySlots[toSlotID].SlotData;
+        if (EquippedSlot != -1)
+        {
+            InventorySlots[EquippedSlot].FillSlot(InventorySlots[EquippedSlot].SlotData, false);
+        }
+
+        if (slotID != EquippedSlot && InventorySlots[slotID].SlotData != null)
+        {
+            InventorySlots[slotID].FillSlot(InventorySlots[slotID].SlotData, true);
+            EquippedSlot = slotID;
+        }
+        else
+        {
+            EquippedSlot = -1;
+        }
+    }
+
+
+    public void ItemDroppedOnSlot(int fromSlotID, int toSlotID)
+	{
+        if (EquippedSlot != -1)
+        {
+            if (EquippedSlot == fromSlotID)
+            {
+                EquippedSlot = toSlotID;
+            }
+            else if (EquippedSlot == toSlotID)
+            {
+                EquippedSlot = fromSlotID;
+            }
+        }
+
+        var toSlotItem = InventorySlots[toSlotID].SlotData;
 		var fromSlotItem = InventorySlots[fromSlotID].SlotData;
 
-		InventorySlots[toSlotID].FillSlot(fromSlotItem);
-		InventorySlots[fromSlotID].FillSlot(toSlotItem);
+        InventorySlots[toSlotID].FillSlot(fromSlotItem, EquippedSlot == toSlotID);
+        InventorySlots[fromSlotID].FillSlot(toSlotItem, EquippedSlot == fromSlotID);
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
@@ -55,10 +101,15 @@ public partial class InventoryHandlerMono : Control
 
     public override void _DropData(Vector2 atPosition, Variant data)
     {
-		int id = (int)data.AsGodotDictionary()["ID"];
+        int id = (int)data.AsGodotDictionary()["ID"];
+        if (EquippedSlot == id)
+        {
+            EquippedSlot = -1;
+        }
+
         var newItem = InventorySlots[id].SlotData.ItemModelPrefab.Instantiate() as Node3D;
 
-		InventorySlots[id].FillSlot(null);
+		InventorySlots[id].FillSlot(null, false);
 		PlayerBody.GetParent().AddChild(newItem);
 		newItem.GlobalPosition = GetWorldMousePosition();
     }

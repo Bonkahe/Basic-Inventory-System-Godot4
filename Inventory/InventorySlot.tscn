@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c152xf4ysp1y"]
+[gd_scene load_steps=6 format=3 uid="uid://c152xf4ysp1y"]
 
 [ext_resource type="Script" path="res://Inventory/InventorySlot.gd" id="1_3b2p6"]
 
@@ -50,7 +50,23 @@ shadow_color = Color(0, 0, 0, 0.109804)
 shadow_size = 1
 shadow_offset = Vector2(0, 2)
 
-[node name="InventorySlot" type="Button" node_paths=PackedStringArray("IconSlot")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s22cn"]
+bg_color = Color(0.487109, 0.454207, 0.402201, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0.733333)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.109804)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+
+[node name="InventorySlot" type="Button" node_paths=PackedStringArray("EquippedHighlight", "IconSlot")]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -59,7 +75,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_hosvb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_faiu1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1h2uy")
 script = ExtResource("1_3b2p6")
+EquippedHighlight = NodePath("EquipedHighlight")
 IconSlot = NodePath("TextureRect")
+
+[node name="EquipedHighlight" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s22cn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

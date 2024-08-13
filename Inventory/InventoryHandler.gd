@@ -11,33 +11,63 @@ class_name InventoryHandler
 
 var InventorySlots : Array[InventorySlot] = []
 
+var EquippedSlot : int = -1
+
 func _ready():
 	for i in ItemSlotsCount:
 		var slot = InventorySlotPrefab.instantiate() as InventorySlot
 		InventoryGrid.add_child(slot)
 		slot.InventorySlotID = i
 		slot.OnItemDropped.connect(ItemDroppedOnSlot.bind())
+		slot.OnItemEquiped.connect(ItemEquipped.bind())
 		InventorySlots.append(slot)
 
 func PickupItem(item : ItemData):
+	var foundSlot : bool = false
 	for slot in InventorySlots:
 		if (!slot.SlotFilled):
-			slot.FillSlot(item)
+			slot.FillSlot(item, false)
+			foundSlot = true
 			break
+	
+	if (!foundSlot):
+		var newItem = item.ItemModelPrefab.instantiate() as Node3D
+		
+		PlayerBody.get_parent().add_child(newItem)
+		newItem.global_position = PlayerBody.global_position + PlayerBody.global_transform.basis.x * 2.0
+
+func ItemEquipped(slotID : int):
+	if (EquippedSlot != -1):
+		InventorySlots[EquippedSlot].FillSlot(InventorySlots[EquippedSlot].SlotData, false)
+	
+	if (slotID != EquippedSlot && InventorySlots[slotID].SlotData != null):
+		InventorySlots[slotID].FillSlot(InventorySlots[slotID].SlotData, true)
+		EquippedSlot = slotID
+	else:
+		EquippedSlot = -1
 
 func ItemDroppedOnSlot(fromSlotID : int, toSlotID : int):
+	if EquippedSlot != -1:
+		if EquippedSlot == fromSlotID:
+			EquippedSlot = toSlotID
+		elif EquippedSlot == toSlotID:
+			EquippedSlot = fromSlotID
+	
 	var toSlotItem = InventorySlots[toSlotID].SlotData
 	var fromSlotItem = InventorySlots[fromSlotID].SlotData
 	
-	InventorySlots[toSlotID].FillSlot(fromSlotItem)
-	InventorySlots[fromSlotID].FillSlot(toSlotItem)
+	InventorySlots[toSlotID].FillSlot(fromSlotItem, EquippedSlot == toSlotID)
+	InventorySlots[fromSlotID].FillSlot(toSlotItem, EquippedSlot == fromSlotID)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data["Type"] == "Item"
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if (EquippedSlot == data["ID"]):
+		EquippedSlot = -1
+	
 	var newItem = InventorySlots[data["ID"]].SlotData.ItemModelPrefab.instantiate() as Node3D
-	InventorySlots[data["ID"]].FillSlot(null)
+	InventorySlots[data["ID"]].FillSlot(null, false)
 	
 	PlayerBody.get_parent().add_child(newItem)
 	newItem.global_position = GetWorldMousePosition()

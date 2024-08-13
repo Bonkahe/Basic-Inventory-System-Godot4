@@ -5,7 +5,11 @@ using System;
 [GlobalClass]
 public partial class InventorySlotMono : Control
 {
+
+    [Signal] public delegate void OnItemEquipedEventHandler(int SlotID);
     [Signal] public delegate void OnItemDroppedEventHandler(int fromSlotID, int toSlotID);
+
+    [Export] public Panel EquippedHighlight { get; set; }
     [Export] public TextureRect IconSlot { get; set; }
 
     public int InventorySlotID {  get; set; } = -1;
@@ -13,9 +17,21 @@ public partial class InventorySlotMono : Control
 
 	public ItemDataMono SlotData { get; set; }
 
-    public void FillSlot(ItemDataMono data)
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.DoubleClick)
+            {
+                EmitSignal(SignalName.OnItemEquiped, InventorySlotID);
+            }
+        }
+    }
+
+    public void FillSlot(ItemDataMono data, bool equipped)
     {
         SlotData = data;
+        EquippedHighlight.Visible = equipped;
         if (SlotData != null)
         {
             SlotFilled = true;
